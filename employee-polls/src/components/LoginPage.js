@@ -43,6 +43,7 @@ const LoginPage = (props) => {
             type="text"
             value={username}
             onChange={handleInputChange}
+            data-testid="username-input"
           />
         </label>
         <label>
@@ -53,12 +54,14 @@ const LoginPage = (props) => {
             autoComplete="on"
             value={password}
             onChange={handleInputChange}
+            data-testid="password-input"
           />
         </label>
         <button
           type="submit"
           disabled={username === "" || password === ""}
           className="submit_btn"
+          data-testid="submit-button"
         >
           Submit
         </button>

@@ -13,16 +13,10 @@ const NavigationBar = (props) => {
       <Link to="/">Home</Link>
       <Link to="/leaderboard">Leaderboard</Link>
       <Link to="/add">New</Link>
-      {props.user === undefined ? (
-        <div className="info-container">
-          <button onClick={logoutTapped}>Login</button>
-        </div>
-      ) : (
-        <div className="info-container">
-          <Profile />
-          <button onClick={logoutTapped}>Logout</button>
-        </div>
-      )}
+      <div className="info-container">
+        <Profile />
+        <button onClick={logoutTapped}>Logout</button>
+      </div>
     </div>
   );
 };

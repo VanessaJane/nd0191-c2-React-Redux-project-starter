@@ -3,7 +3,6 @@ import QuestionCard from "./QuestionCard";
 import { Col, Row } from "react-bootstrap";
 
 const GridQuestion = (props) => {
-  console.log(props);
   return (
     <div>
       <div className="border-box">

@@ -55,6 +55,11 @@ const QuestionDetail = (props) => {
 const mapStateToProps = ({ authedUser, users, questions }, props) => {
   const { question_id } = props.router.params;
   const question = questions[question_id];
+  if (question === undefined) {
+    return {
+      question: question,
+    };
+  }
   const author = users[question.author];
   const listAnswer = users[authedUser].answers;
 

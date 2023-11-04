@@ -1,12 +1,23 @@
 import { connect } from "react-redux";
 import GridQuestions from "./GridQuestions";
+import { Tab, Tabs } from "react-bootstrap";
 
 const Dashboard = (props) => {
   return (
-    <div>
-      <GridQuestions questions={props.newQuestions} title={"New Question"} />
-      <GridQuestions questions={props.answeredQuestions} title={"Done"} />
-    </div>
+    <Tabs
+      defaultActiveKey="unanswered"
+      id="justify-tab-example"
+      className="mb-4"
+      variant="underline"
+      justify
+    >
+      <Tab eventKey="unanswered" title="Unanswered">
+        <GridQuestions questions={props.newQuestions} title={"New Question"} />
+      </Tab>
+      <Tab eventKey="answered" title="Answered">
+        <GridQuestions questions={props.answeredQuestions} title={"Done"} />
+      </Tab>
+    </Tabs>
   );
 };
 
@@ -24,8 +35,10 @@ const mapStateToProps = ({ authedUser, users, questions }) => {
   });
 
   return {
-    newQuestions: newQuestions,
-    answeredQuestions: answeredQuestions,
+    newQuestions: newQuestions.sort((a, b) => b.timestamp - a.timestamp),
+    answeredQuestions: answeredQuestions.sort(
+      (a, b) => b.timestamp - a.timestamp
+    ),
   };
 };
 

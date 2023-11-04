@@ -50,6 +50,7 @@ const LoginPage = (props) => {
           <input
             name="password"
             type="password"
+            autoComplete="on"
             value={password}
             onChange={handleInputChange}
           />
@@ -57,7 +58,7 @@ const LoginPage = (props) => {
         <button
           type="submit"
           disabled={username === "" || password === ""}
-          className="btn"
+          className="submit_btn"
         >
           Submit
         </button>

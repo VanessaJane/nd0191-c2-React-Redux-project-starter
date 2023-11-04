@@ -1,21 +1,34 @@
 import { Link } from "react-router-dom";
+import { handleLogOut } from "../actions/shared";
+import { connect } from "react-redux";
+import Profile from "./Profile";
 
-const NavigationBar = () => {
+const NavigationBar = (props) => {
+  const logoutTapped = (event) => {
+    event.preventDefault();
+    props.dispatch(handleLogOut());
+  };
   return (
-    <nav className="navigation-bar">
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/leaderboard">Leaderboard</Link>
-        </li>
-        <li>
-          <Link to="/new">New</Link>
-        </li>
-      </ul>
-    </nav>
+    <div className="topnav">
+      <Link to="/">Home</Link>
+      <Link to="/leaderboard">Leaderboard</Link>
+      <Link to="/add">New</Link>
+      {props.user === undefined ? (
+        <div className="info-container">
+          <button onClick={logoutTapped}>Login</button>
+        </div>
+      ) : (
+        <div className="info-container">
+          <Profile />
+          <button onClick={logoutTapped}>Logout</button>
+        </div>
+      )}
+    </div>
   );
 };
 
-export default NavigationBar;
+const mapStateToProps = ({ authedUser, users }) => ({
+  user: users[authedUser],
+});
+
+export default connect(mapStateToProps)(NavigationBar);

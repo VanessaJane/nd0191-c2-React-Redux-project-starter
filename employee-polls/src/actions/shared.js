@@ -20,3 +20,9 @@ export function handleLogIn(userId) {
     return dispatch(setAuthedUser(userId));
   };
 }
+
+export function handleLogOut() {
+  return (dispatch) => {
+    return dispatch(setAuthedUser(null));
+  };
+}
